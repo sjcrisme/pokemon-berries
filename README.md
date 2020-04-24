@@ -24,7 +24,8 @@ It should have at least the following features:
 or you can run it at https://stackblitz.com/github/sjcrisme/pokemon-berries
 but without images
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6. 
+And angular Material
 
 
 
