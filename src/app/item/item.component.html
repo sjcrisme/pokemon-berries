@@ -1,0 +1,34 @@
+<button mat-button><a [routerLink]="'/list'"> Back to list</a></button>
+
+<mat-card class="big-card">
+  <mat-card-header>
+    <mat-card-title>{{berry.name}}</mat-card-title>
+  </mat-card-header>
+
+  <img mat-card-image [src]="berry.id | ImageFormat:'large'" alt="{{berry.name}} image">
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>Firmness: <span>{{berry.firmness.name}}</span></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Harvest: <span>{{berry.max_harvest}}</span></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Size: <span>{{berry.size}}</span></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Smoothness: <span>{{berry.smoothness}}</span></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Soil dryness: <span>{{berry.soil_dryness}}</span></mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+
+<br />
+<h3>Berries with same firmness</h3>
+
+<div class="cards-container">
+  <mat-card class="small-card" *ngFor="let smallberry of berries">
+    <img mat-card-image src="{{smallberry.id | ImageFormat }}" alt="{{smallberry.name}} image">
+    <a [routerLink]="['/view', smallberry.id, 'firmness', smallberry.firmness.name]">
+      <mat-card-title>{{smallberry.name}}</mat-card-title>
+    </a>
+  </mat-card>
+</div>

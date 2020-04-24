@@ -1,0 +1,35 @@
+h3 {
+  text-align: center;
+}
+.big-card {
+  width: 50%;
+
+  span {
+    padding-left: 10px;
+    color: #ff6244;
+  }
+
+  .mat-card-image {
+    width: 100px;
+  }
+}
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.small-card {
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5px;
+
+  .mat-card-image{
+    margin: 0px;
+  }
+  img {
+    width: 64px;
+  }
+}
