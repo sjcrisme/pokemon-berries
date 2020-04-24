@@ -1,4 +1,5 @@
 # Angular8PokemonTest Challenge. 
+<img src='./pokemonBerry.png'>
 Create a catalog of all the berries from PackeAPI, where you can search, filter
 and look their profile information with:
 - Name
@@ -13,7 +14,7 @@ It should have at least the following features:
 - Catalogue page with a list of berries, with filter and sort options
 - Detail page with the basic info and links to berries with same firmness
 
-#To run project:
+## To run project:
 - npm i
 - npm run start
 - be happy :)
