@@ -1,4 +1,5 @@
 # Angular8PokemonTest Challenge. 
+Test challenge. At Angular dev position.
 <img src='./pokemonBerry.png'>
 
 Create a catalog of all the berries from PackeAPI, where you can search, 
