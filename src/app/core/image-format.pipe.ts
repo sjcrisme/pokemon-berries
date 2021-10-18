@@ -6,7 +6,7 @@ import { IMG } from './images.const';
 })
 export class ImageFormatPipe implements PipeTransform {
   transform(value: number, size: string): string {
-    let path = 'assets' + IMG.find(item => item.id === value).img.small;
+    let path: string = 'assets' + IMG.find(item => item.id === value).img.small;
     if (size === 'large') {
       path = 'assets' + IMG.find(item => item.id === value).img.large;
     }

@@ -3,19 +3,20 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BerriesService } from '../berries.service';
+import { BerryFirmnesses } from './models';
 
 @Injectable()
 export class ViewResolver implements Resolve<Observable<any>> {
 
   constructor(private berryService: BerriesService) {}
 
-  resolve(route: ActivatedRouteSnapshot) {
+  public resolve(route: ActivatedRouteSnapshot) {
 
     if (route.paramMap.get('name') && route.paramMap.get('id')) {
-      const id = parseInt(route.paramMap.get('id'), 10);
+      const id: number = parseInt(route.paramMap.get('id'), 10);
       return this.berryService.getBerryFirmness(route.paramMap.get('name'))
         .pipe(
-          map(result => {
+          map((result: BerryFirmnesses) => {
             return {...result, berryId: id};
           })
         );

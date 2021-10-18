@@ -1,19 +1,9 @@
-import { Injectable } from '@angular/core';
-import { BerriesService } from './berries.service';
-import { map, switchMap } from 'rxjs/operators';
-import { forkJoin } from 'rxjs/internal/observable/forkJoin';
-
-export interface BerriesType {
-  count: number;
-  next: null;
-  previous: null;
-  results: BerryItem[];
-}
-
-export interface BerryItem {
-  name: string;
-  url: string;
-}
+import {Injectable} from '@angular/core';
+import {BerriesService} from './berries.service';
+import {map, switchMap} from 'rxjs/operators';
+import {forkJoin} from 'rxjs/internal/observable/forkJoin';
+import {Observable} from 'rxjs';
+import {BerriesType, BerryInfo, BerryItem} from './core/models';
 
 @Injectable({
   providedIn: 'root'
@@ -21,31 +11,31 @@ export interface BerryItem {
 
 export class StoreService {
 
-  public db;
+  public db: BerryInfo[];
   constructor(private berryService: BerriesService) { }
 
-  init() {
-    const arrayOfStreams = [];
+  public init(): Observable<BerryInfo[]> {
+    const arrayOfStreams: Observable<BerryInfo>[] = [];
     return this.berryService.getAllBerries().pipe(
       map( (berries: BerriesType) => {
-        const result = berries.results;
+        const result: BerryItem[] = berries.results;
         if (result) {
-          for (let value of Object.values(result)) {
+          for (const value of Object.values(result)) {
             arrayOfStreams.push(this.berryService.getBerriInfo(value.name));
           }
         }
         return berries;
       }),
-      switchMap(berries => forkJoin(arrayOfStreams))
+      switchMap(() => forkJoin(arrayOfStreams))
     );
   }
 
-  getBerrybyId(id) {
-    return this.db.find(berry => berry.id === id);
+  public getBerrybyId(id: number): BerryInfo{
+    return this.db.find((berry: BerryInfo) => berry.id === id);
   }
 
-  getBerriesByNames(berriesNames: string[]) {
-    return this.db.filter(berries => berriesNames.some(berry => berry === berries.name));
+  public getBerriesByNames(berriesNames: string[]): BerryInfo[] {
+    return this.db.filter((berries: BerryInfo) => berriesNames.some((berry: string) => berry === berries.name));
   }
 
 }

@@ -26,7 +26,7 @@
 
 <div class="cards-container">
   <mat-card class="small-card" *ngFor="let smallberry of berries">
-    <img mat-card-image src="{{smallberry.id | ImageFormat }}" alt="{{smallberry.name}} image">
+    <img mat-card-image src="{{smallberry.id | ImageFormat: 'large' }}" alt="{{smallberry.name}} image">
     <a [routerLink]="['/view', smallberry.id, 'firmness', smallberry.firmness.name]">
       <mat-card-title>{{smallberry.name}}</mat-card-title>
     </a>

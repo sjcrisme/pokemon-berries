@@ -12,10 +12,11 @@ import { ItemComponent } from './item/item.component';
 import { ViewResolver } from './core/view.resolver';
 import { ImageFormatPipe } from './core/image-format.pipe';
 import { FormsModule } from '@angular/forms';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 export function initApp(stor: StoreService) {
   return () => {
-    return stor.init().toPromise().then((respond) =>  stor.db = respond);
+    return stor.init().toPromise().then((respond) => stor.db = respond);
   };
 }
 
@@ -32,7 +33,8 @@ export function initApp(stor: StoreService) {
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule
   ],
   providers: [
     {

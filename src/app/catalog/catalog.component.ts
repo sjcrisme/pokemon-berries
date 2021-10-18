@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { MatPaginator } from '@angular/material';
 import { StoreService } from '../store.service';
 
 @Component({
-  selector: 'catalog-root',
+  selector: 'app-catalog-root',
   templateUrl: './catalog.component.html',
   styles: [
     'table { width: 100%; }',
@@ -26,7 +25,6 @@ export class CatalogComponent implements OnInit {
   };
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(public stor: StoreService) {
     this.berries = this.stor.db;
@@ -35,7 +33,7 @@ export class CatalogComponent implements OnInit {
   public ngOnInit(): void {
     this.dataSource.data = this.berries;
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
   }
 
   public search(value: string): void {
@@ -43,6 +41,7 @@ export class CatalogComponent implements OnInit {
   }
 
   public filterChange(filter, event): void {
+    console.log(filter);
     this.dataSource.data = this.stor.db;
     if (event.target.value !== '') {
       this.dataSource.data = this.stor.db.filter(berry => berry.firmness.name === event.target.value);

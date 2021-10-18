@@ -6,7 +6,7 @@
 
     <mat-form-field class="filter" floatLabel="always">
       <mat-label>Filter</mat-label>
-      <select matNativeControl name="filter" [(ngModel)]="filter.modelValue" (change)="filterChange(filter,$event)">
+      <select matNativeControl name="filter" [(ngModel)]="filter['modelValue']" (change)="filterChange(filter,$event)">
         <option value="">-- Select Firmness --</option>
         <option [value]="item" *ngFor="let item of filter.options">{{item}}</option>
       </select>
@@ -24,7 +24,7 @@
     <!-- image Column -->
     <ng-container matColumnDef="image">
       <th mat-header-cell *matHeaderCellDef > image </th>
-      <td mat-cell *matCellDef="let element"><div><img src="{{element.id | ImageFormat }}"></div></td>
+      <td mat-cell *matCellDef="let element"><div><img src="{{element.id | ImageFormat: 'large' }}"></div></td>
     </ng-container>
 
     <!-- name Column -->
