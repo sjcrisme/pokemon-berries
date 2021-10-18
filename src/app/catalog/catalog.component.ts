@@ -15,11 +15,11 @@ import { StoreService } from '../store.service';
   ]
 })
 export class CatalogComponent implements OnInit {
-  berries;
-  displayedColumns: string[] = ['id', 'image', 'name', 'growth_time', 'max_harvest', 'firmness'];
-  dataSource = new MatTableDataSource([]);
+  public berries;
+  public displayedColumns: string[] = ['id', 'image', 'name', 'growth_time', 'max_harvest', 'firmness'];
+  public dataSource = new MatTableDataSource([]);
 
-  filter = {
+  public filter = {
     options: [
       'very-soft', 'soft', 'hard', 'very-hard', 'super-hard'
     ]
@@ -32,17 +32,17 @@ export class CatalogComponent implements OnInit {
     this.berries = this.stor.db;
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.dataSource.data = this.berries;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
-  search(value: string) {
+  public search(value: string): void {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 
-  filterChange(filter, event) {
+  public filterChange(filter, event): void {
     this.dataSource.data = this.stor.db;
     if (event.target.value !== '') {
       this.dataSource.data = this.stor.db.filter(berry => berry.firmness.name === event.target.value);
